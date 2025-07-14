@@ -61,14 +61,11 @@ void CloseProcs()
 	EnumWindows(EnumProcs, 0);
 	for (DWORD for_pid : pids)
 	{
-		if (for_pid != 17976) // visual studio
-		{
 			HANDLE hProc = OpenProcess(PROCESS_TERMINATE, FALSE, for_pid);
 			if (hProc)
 			{
 				TerminateProcess(hProc, 0);
 				CloseHandle(hProc);
 			}
-		}
 	}
 }

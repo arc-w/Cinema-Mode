@@ -11,6 +11,7 @@
 #include <thread>
 #include <mmsystem.h>
 #include <atlstr.h>
+#include <string>
 #include "Mmdeviceapi.h"
 #include "PolicyConfig.h"
 #include "Propidl.h"
@@ -21,6 +22,8 @@ extern bool isChromeOpen;
 BOOL CALLBACK EnumProcs(HWND hwnd, LPARAM lparam);
 BOOL CALLBACK EnumChrome(HWND hwnd, LPARAM lparam);
 HRESULT SetDefaultAudioPlaybackDevice(LPCWSTR devID);
+std::vector<CString> CoutDefaultAudioDevices();
 void CloseProcs();
 void enumDevices();
-void InitDefaultAudioDevice();
+void InitDefaultAudioDevice(CString device);
+void SleepMode();

@@ -131,6 +131,7 @@
     <ClCompile Include="CloseApps.cpp" />
     <ClCompile Include="isChromeOpen.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="mainFunc.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header.h" />
