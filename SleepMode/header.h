@@ -12,6 +12,7 @@
 #include <mmsystem.h>
 #include <atlstr.h>
 #include <string>
+#include <fstream>
 #include "Mmdeviceapi.h"
 #include "PolicyConfig.h"
 #include "Propidl.h"
@@ -26,4 +27,5 @@ std::vector<CString> CoutDefaultAudioDevices();
 void CloseProcs();
 void enumDevices();
 void InitDefaultAudioDevice(CString device);
-void SleepMode();
+void CinemaMode(CString deviceName, std::string url, std::string browserPath);
+bool IsExplorerProcess(DWORD pid);

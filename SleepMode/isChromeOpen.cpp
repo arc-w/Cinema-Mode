@@ -9,7 +9,7 @@ BOOL CALLBACK EnumChrome(HWND hwnd, LPARAM lparam)
 	HANDLE hName = OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ, FALSE, pid);
 	if (hName)
 	{
-		TCHAR processName[MAX_PATH] = TEXT("unluck");
+		TCHAR processName[MAX_PATH] = TEXT("unkown");
 		HMODULE hMod;
 		DWORD cbNeeded;
 		if (EnumProcessModules(hName, &hMod, sizeof(hMod), &cbNeeded))

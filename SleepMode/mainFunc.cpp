@@ -1,15 +1,18 @@
 #include "header.h"
 
-void SleepMode()
+void CinemaMode(CString deviceName, std::string url, std::string browserPath)
 {
 	CloseProcs();
-	do
+	for (int i = 0; i < browserPath.size(); i++)
 	{
-		ShellExecute(nullptr, L"open", L"C:/Program Files/Google/Chrome/Application/chrome.exe", L"https://youtube.com", nullptr, SW_SHOWNORMAL);
-		std::chrono::seconds timespan(2);
-		std::this_thread::sleep_for(timespan);
-		EnumWindows(EnumChrome, 0);
-	} while (!isChromeOpen);
+		if (browserPath.at(i) == '\\')
+		{
+			browserPath.at(i) = '/';
+		}
+	}
+	ShellExecuteA(nullptr, "open", browserPath.c_str(), url.c_str(), nullptr, SW_SHOWNORMAL);
+	std::chrono::seconds timespan(3);
+	std::this_thread::sleep_for(timespan);
 	INPUT ip;
 	ip.type = INPUT_KEYBOARD;
 	ip.ki.wScan = 0;
@@ -20,5 +23,5 @@ void SleepMode()
 	SendInput(1, &ip, sizeof(INPUT));
 	ip.ki.dwFlags = KEYEVENTF_KEYUP;
 	SendInput(1, &ip, sizeof(INPUT));
-	//InitDefaultAudioDevice();
+	InitDefaultAudioDevice(deviceName);
 }

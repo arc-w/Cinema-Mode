@@ -20,10 +20,6 @@ BOOL CALLBACK EnumProcs(HWND hwnd, LPARAM lparam)
 		{
 			pids.insert(pid);
 		}
-		if (_tcscmp(processName, TEXT("explorer.exe")) == 0 || _tcscmp(processName, TEXT("explorer.EXE")) == 0)
-		{
-			return TRUE;
-		}
 		if (_tcscmp(processName, TEXT("WindowsTerminal.exe")) == 0 || _tcscmp(processName, TEXT("VsDebugConsole.exe")) == 0) // terminal
 		{
 			return TRUE;
@@ -59,6 +55,23 @@ void CloseProcs()
 {
 	pids.clear();
 	EnumWindows(EnumProcs, 0);
+	for (DWORD pid : pids)
+	{
+		EnumWindows([](HWND hwnd, LPARAM lparam) -> BOOL {
+			DWORD wndPid = 0;
+			GetWindowThreadProcessId(hwnd, &wndPid);
+			if (wndPid == (DWORD)lparam)
+			{
+				if (IsWindowVisible(hwnd) && GetWindowTextLength(hwnd) > 0)
+					PostMessage(hwnd, WM_CLOSE, 0, 0);
+			}
+			return TRUE;
+			}, (LPARAM)pid);
+	}
+
+	std::chrono::seconds timespan(1);
+	std::this_thread::sleep_for(timespan);
+
 	for (DWORD for_pid : pids)
 	{
 			HANDLE hProc = OpenProcess(PROCESS_TERMINATE, FALSE, for_pid);
