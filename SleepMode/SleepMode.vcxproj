@@ -129,7 +129,7 @@
   <ItemGroup>
     <ClCompile Include="changeDevice.cpp" />
     <ClCompile Include="CloseApps.cpp" />
-    <ClCompile Include="isChromeOpen.cpp" />
+    <ClCompile Include="isBrowserOpen.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mainFunc.cpp" />
   </ItemGroup>

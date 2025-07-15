@@ -10,9 +10,14 @@ void CinemaMode(CString deviceName, std::string url, std::string browserPath)
 			browserPath.at(i) = '/';
 		}
 	}
-	ShellExecuteA(nullptr, "open", browserPath.c_str(), url.c_str(), nullptr, SW_SHOWNORMAL);
-	std::chrono::seconds timespan(3);
-	std::this_thread::sleep_for(timespan);
+	get_browser_exe(browserPath);
+	do
+	{
+		ShellExecuteA(nullptr, "open", browserPath.c_str(), url.c_str(), nullptr, SW_SHOWNORMAL);
+		std::chrono::seconds timespan(1);
+		std::this_thread::sleep_for(timespan);
+		EnumWindows(EnumBrowser, 0);
+	} while (!isBrowserOpen);
 	INPUT ip;
 	ip.type = INPUT_KEYBOARD;
 	ip.ki.wScan = 0;

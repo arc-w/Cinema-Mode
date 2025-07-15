@@ -21,7 +21,7 @@
     <ClCompile Include="CloseApps.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
-    <ClCompile Include="isChromeOpen.cpp">
+    <ClCompile Include="isBrowserOpen.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
     <ClCompile Include="changeDevice.cpp">
