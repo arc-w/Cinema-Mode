@@ -1,5 +1,6 @@
 #include "header.h"
-void enumDevices()
+
+void enumDevices() // enumerates available audio devices
 {
     int nSoundCardCount = waveOutGetNumDevs();
 
@@ -12,7 +13,7 @@ void enumDevices()
     }
 }
 
-HRESULT SetDefaultAudioPlaybackDevice(LPCWSTR devID)
+HRESULT SetDefaultAudioPlaybackDevice(LPCWSTR devID) // raw functions that sets Default Audio Playback Device
 {
     IPolicyConfigVista* pPolicyConfig;
     ERole reserved = eConsole;
@@ -131,7 +132,7 @@ void InitDefaultAudioDevice(CString device)
     CoUninitialize();
 }
 
-std::vector<CString> CoutDefaultAudioDevices()
+std::vector<CString> CoutDefaultAudioDevices() // prints all available audio devices, returns vector of those devices in CString
 {
     std::vector<CString> devicesList;
     HRESULT hr = CoInitialize(NULL);
@@ -177,8 +178,6 @@ std::vector<CString> CoutDefaultAudioDevices()
                                     hr = pStore->GetValue(PKEY_Device_FriendlyName, &friendlyName);
                                     if (SUCCEEDED(hr))
                                     {
-                                        // if no options, print the device
-                                        // otherwise, find the selected device and set it to be default
                                         CString strTmp = friendlyName.pwszVal;
                                         std::cout << i << ": ";
                                         std::wcout << (LPCTSTR)strTmp << std::endl;

@@ -18,19 +18,19 @@ std::wstring to_wide(const std::string& multi) {
 
 void get_browser_exe(std::string browserPath)
 {
-	std::string temp_browser_exe = "";
+	std::string temp_browser_exe = ""; // stores temporary text but at the end gets a browser process name
 	for (int i = 0; i < browserPath.size(); i++)
 	{
 		if (!(browserPath.at(i) == '/'))
 		{
-			temp_browser_exe += browserPath.at(i);
+			temp_browser_exe += browserPath.at(i); // if current symbol is not slash - save letter
 		}
 		else
 		{
-			temp_browser_exe.clear();
+			temp_browser_exe.clear(); // if it is - clear temp_browser_exe
 		}
 	}
-	browser_exe = temp_browser_exe;
+	browser_exe = temp_browser_exe; // gives a global variable browser_exe browser`s process name
 }
 
 BOOL CALLBACK EnumBrowser(HWND hwnd, LPARAM lparam)
@@ -40,16 +40,16 @@ BOOL CALLBACK EnumBrowser(HWND hwnd, LPARAM lparam)
 	HANDLE hName = OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ, FALSE, pid);
 	if (hName)
 	{
-		TCHAR processName[MAX_PATH] = TEXT("unkown");
+		TCHAR processName[MAX_PATH] = TEXT("unknown");
 		HMODULE hMod;
 		DWORD cbNeeded;
 		if (EnumProcessModules(hName, &hMod, sizeof(hMod), &cbNeeded))
 		{
-			GetModuleBaseName(hName, hMod, processName, sizeof(processName) / sizeof(TCHAR));
+			GetModuleBaseName(hName, hMod, processName, sizeof(processName) / sizeof(TCHAR)); // gets name of process
 		}
-		if (_tcscmp(processName, to_wide(browser_exe).c_str()) == 0)
+		if (_tcscmp(processName, to_wide(browser_exe).c_str()) == 0) // converts browser process name (string) to wchar_t, to compare it to current process name
 		{
-			isBrowserOpen = true;
+			isBrowserOpen = true; // if process name is same as stored globally, marks that browser has been successfuly opened
 			return TRUE;
 		}
 	}
