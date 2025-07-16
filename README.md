@@ -4,7 +4,8 @@
 1. Closes all opened apps
 2. Opens your browser and preffered website
 3. Enters fullscreen
-4. Change your default audio playback device to the one you use to watch anything.  
+4. Change your default audio playback device to the one you use to watch anything.
+  
 At the first run, the tool will run a setup (ask to choose device, browser, website, etc.). Settings file will be created. The next run program will function automatically.
 To run a setup again, delete settings file (CinemaMode_arc-w.txt (which is located in the same folder as CinemaMode.exe)) or change "1" to "0" in the first line of it.
 You can change settungs anytime in the CinemaMode_arc-w.txt, as long as "1" at the first line is present, program will automatically take all data from that file.
