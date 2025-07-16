@@ -1,6 +1,6 @@
 # Cinema Mode
 ## Imagine, you've been coding all day, and when the today's work is done, you just want to chill and watch some Netflix/YouTube. This tool is basically a "switch" to enable a "Cinema Mode".
-###W hat this program does is
+### What this program does is:
 1. Closes all opened apps
 2. Opens your browser and preffered website
 3. Enters fullscreen
